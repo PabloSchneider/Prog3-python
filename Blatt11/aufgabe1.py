@@ -102,7 +102,7 @@ class MessreiheGenIter:
         self._mr = mr
 
     def erzugeIterator(self):
-        for w in self.mr:
+        for w in self._mr:
             yield w
 
     def __iter__(self):
