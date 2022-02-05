@@ -1,16 +1,15 @@
-#!/usr/bin/env python3
-
-from aufgabe1 import Messwert
+from . import messwert
 from typing import Iterable
 
 
 class MonotonieVerstossError(ValueError):
     pass
-class Messreihe:
 
+class Messreihe:
+    
 
     def __init__(self, data = None):
-        self._reihe = list([Messwert(y.split(",")) for y in open('messwerte.csv')] if data == None else data)
+        self._reihe = list([messwert.Messwert(y.split(",")) for y in open('messwerte.csv')] if data == None else data)
 
     def __len__(self):
         return(len(self._reihe))
@@ -33,7 +32,7 @@ class Messreihe:
         m = Messreihe(self._reihe.append(new))
         return m
     
-    def add(self, neuwerte : Messwert):
+    def add(self, neuwerte : messwert.Messwert):
         if isinstance(neuwerte, Iterable):
             for i in neuwerte:
                 if i not in self._reihe:
@@ -66,7 +65,7 @@ class Messreihe:
         if isinstance(suche, str):
             return Messreihe([a for a in self._reihe if suche in a._zeitpunkt])
     
-    def addNew(self, mw:Messwert):
+    def addNew(self, mw:messwert.Messwert):
         latestDate = "0000-00-00 00:00:00.000000"
         for w in self._reihe:
             if w._zeitpunkt > latestDate:
@@ -75,10 +74,3 @@ class Messreihe:
             raise MonotonieVerstossError("FEHLER: der zeitpunkt ", mw._zeitpunkt, " ist nicht groesser als: ",latestDate )
         else:
             self._reihe.append(mw)
-mr = Messreihe()
-
-mr.add(Messwert("2019-05-12 13:30:01.922924",100.3))
-try:
-    mr.addNew(mr[0])
-except MonotonieVerstossError as exc: # bei der Exception kann man ein RuntimeError noch werfen, da der MonotonieVerstossError eine Unterklasser dieser ist
-    print(exc)
