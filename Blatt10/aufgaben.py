@@ -88,6 +88,28 @@ class Messreihe:
 #print(set(messwerte))
 #print(eval(repr(x)) == x)
 #print(x < y)
+mr1 = Messreihe([
+Messwert("2013-07-15 16:03:08.260597",19.875),
+Messwert("2013-07-15 16:15:01.997792",19.5625),
+Messwert("2013-07-15 16:30:01.455079",20.3125),
+Messwert("2013-07-15 17:00:01.201636",20.0625),
+Messwert("2013-07-15 17:15:01.618921",20.625),
+Messwert("2013-07-15 17:30:02.060205",19.75),
+Messwert("2013-07-15 17:42:38.733501",20.1875)
+])
+mr2 = Messreihe([
+Messwert("2013-07-15 18:30:01.251394",20.4375),
+Messwert("2013-07-15 18:45:01.420677",20.375),
+Messwert("2013-07-15 19:00:01.885987",19.5625),
+Messwert("2013-07-15 19:15:01.231257",20.1875),
+Messwert("2013-07-15 19:30:01.720501",20.1875),
+Messwert("2013-07-15 19:45:02.073782",19.0625),
+Messwert("2013-07-15 17:42:38.733501",20.1875)
+])
+mr = Messreihe()
+print(len(mr1))
+mr1.add(mr2)
+print(len(mr1))
 #--------------Aufgabe2--------------#
 #mess1 = Messreihe()
 #print(len(mess1))
@@ -98,6 +120,7 @@ class Messreihe:
 #    print(n)
 #print(newMess)
 #--------------Aufgabe3--------------#
+'''
 mess = Messreihe()
 print("länge: ", len(mess))
 print("min temp: ", min([x._temeratur for x in mess]))
@@ -119,3 +142,4 @@ for e in m10:
     zahl += float(e._temeratur)
 zahl = zahl/len(m10)
 print("Mittelwert der Temperaturen:", zahl)
+'''
